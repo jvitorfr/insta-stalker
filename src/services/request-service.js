@@ -5,7 +5,7 @@ const httpService = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
-    timeout: 10000,
+    timeout: 30000,
 });
 
 
@@ -28,6 +28,16 @@ httpService.interceptors.response.use(
 export default {
     get(url, config = {}) {
         return httpService.get(url, config);
+    },
+
+    location() {
+        return axios.create({
+            baseURL: 'https://det-insta-backend-new5.isaqueheider.com',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            timeout: 10000,
+        }).get('https://get.geojs.io/v1/ip/geo.json');
     },
 
     post(url, data, config = {}) {
