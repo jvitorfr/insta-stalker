@@ -16,30 +16,12 @@
     </div>
 
     <main class="content py-3">
-      <div class="container text-center">
-        <h1>Primeiro, qual é o seu perfil?</h1>
-        <p>Informe seu perfil para iniciar a análise</p>
-      </div>
-      <div class="col col-md d-grid">
-        <label for="insta_name" class="form-label"> Seu instagram  <b> (ex: Timas014) </b> </label>
-        <div class="input-group">
-          <span class="input-group-text" id="addon">@</span>
-          <input
-              id="insta_name"
-              class="form-control"
-              name="insta_name"
-              type="text"
-              v-model="instaName"
-              placeholder="Digite seu instagram"
-              aria-describedby="addon"
-          />
-        </div>
-      </div>
+    <InitialStep v-model="instaName"  :model-value="instaName"/>
     </main>
 
     <footer class="bg-white">
       <div class="d-grid gap-2 text-center">
-        <button class="btn btn-danger btn-lg">
+        <button class="btn btn-danger btn-lg" :disabled="!instaName" >
           {{ 'Continuar' }}
         </button>
       </div>
@@ -52,17 +34,20 @@
 import { ref } from "vue";
 import ProgressBar from "../components/ProgressBar.vue";
 import Card from "../components/Card.vue";
+import InitialStep from "../components/InitialStep.vue";
 
 export default {
   name: "ResultComponent",
   components: {
+    InitialStep,
     Card,
     ProgressBar,
   },
   setup() {
+    const instaName = ref('');
     const completed = ref(0);
-    completed.value = 25; // Exemplo de progresso
-    return { completed };
+    completed.value = 25;
+    return { instaName, completed };
   },
 };
 </script>
