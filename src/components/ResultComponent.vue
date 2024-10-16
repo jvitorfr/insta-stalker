@@ -1,14 +1,14 @@
 <template>
   <div class="layout">
 
-    <header class="py-5">
+    <header class="py-5" v-if="stepOne">
       <div class="container">
         <ProgressBar :bgColor="'#FEFEE2'" :progressBarColor="'#EF4444'" :completed="completed"/>
       </div>
     </header>
 
-    <h1 style="text-align: center"> Descubra em 1 minuto <br/> quem ainda te ama e quem te odeia </h1>
-    <div class="cards-container">
+    <h1 style="text-align: center" v-if="stepOne"> Descubra em 1 minuto <br/> quem ainda te ama e quem te odeia </h1>
+    <div class="cards-container" v-if="stepOne">
       <Card title="Quem não te tira os olhos" description="Reviu seus stories mais que 3 vezes"/>
       <Card title="Quem não te esquece" description="Diz que superou mas visitou seu perfil 3x hoje"/>
       <Card title="Quem não te tira da boca" description="Seus seguidores que mais te mencionaram"/>
@@ -16,12 +16,13 @@
     </div>
 
     <main class="content py-3">
-    <InitialStep v-model="instaName"  :model-value="instaName"/>
+      <InitialStep v-if="stepOne" v-model="instaName" :model-value="instaName"/>
+      <VueSpinner v-if="stepTwo" size="100" color="#EF4444" />
     </main>
 
-    <footer class="bg-white">
+    <footer class="bg-white" v-if="stepOne">
       <div class="d-grid gap-2 text-center">
-        <button class="btn btn-danger btn-lg" :disabled="!instaName" >
+        <button class="btn btn-danger btn-lg" :disabled="!instaName" @click="changeStep()">
           {{ 'Continuar' }}
         </button>
       </div>
@@ -31,10 +32,13 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import {ref} from "vue";
 import ProgressBar from "../components/ProgressBar.vue";
 import Card from "../components/Card.vue";
 import InitialStep from "../components/InitialStep.vue";
+import {
+  VueSpinner
+} from 'vue3-spinners';
 
 export default {
   name: "ResultComponent",
@@ -45,10 +49,27 @@ export default {
   },
   setup() {
     const instaName = ref('');
+    const step = ref(1);
     const completed = ref(0);
     completed.value = 25;
-    return { instaName, completed };
+    return {step, instaName, completed};
   },
+  computed: {
+    stepOne() {
+      return this.step === 1;
+    },
+    stepTwo() {
+      return this.step === 2;
+    }
+  },
+  methods: {
+    changeStep() {
+      if (this.stepOne) {
+        this.step = 2;
+      }
+
+    }
+  }
 };
 </script>
 
