@@ -40,6 +40,8 @@ export default {
   width: 100%;
   background-color: #e0e0de;
   border-radius: 50px;
+  margin: 0;
+  padding: 0;
 }
 
 .label {

@@ -16,11 +16,24 @@ export default {
 </script>
 
 <style lang="scss">
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 #app {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+header, main, footer {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
 }
 
 @import "~bootstrap/scss/bootstrap.scss";

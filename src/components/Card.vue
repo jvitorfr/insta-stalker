@@ -29,15 +29,47 @@ export default {
 .card {
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 16px;
   max-width: 300px;
+  width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: max-width 0.3s ease, font-size 0.3s ease;
 }
+
 .card-header h3 {
   margin: 0;
   font-size: 1.2rem;
 }
+
 .card-body p {
   margin: 0.5rem 0 0;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 250px;
+  }
+
+  .card-header h3 {
+    font-size: 1rem;
+  }
+
+  .card-body p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+    max-width: 200px;
+  }
+
+  .card-header h3 {
+    font-size: 0.9rem;
+  }
+
+  .card-body p {
+    font-size: 0.8rem;
+  }
 }
 </style>
