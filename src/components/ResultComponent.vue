@@ -99,10 +99,17 @@
                            :items="userInformation.stories_list"/>
         </span>
 
-             <span v-if="userInformation.data && userInformation.data.length > 0">
+        <span v-if="userInformation.data && userInformation.data.length > 0">
                    <h2 class="mt-5"> Reviram seus stories entre 1 e 4 vezes: </h2>
 
-              <ProfilesList :items="userInformation.data"/>
+              <ProfilesList :autoplay="6000" :random_number="Math.floor(Math.random() * 21)" :items="userInformation.data"/>
+        </span>
+
+
+          <span v-if="userInformation.data && userInformation.data.length > 0">
+                   <h2 class="mt-5"> Visitaram seu perfil essa semana de 2 a 7 vezes:</h2>
+
+              <ProfilesList :autoplay="3000" :random_number="Math.floor(Math.random() * 4)" :items="userInformation.data"/>
         </span>
       </span>
 
