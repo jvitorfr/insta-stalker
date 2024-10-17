@@ -1,14 +1,21 @@
 <template>
   <Carousel class="mt-3" v-if="items !== undefined" :items-to-show="2.1" :wrap-around="true">
-    <Slide v-for="(item, index) in items" :key="index" class="slide-item">
+    <Slide v-for="(item, index) in items" :key="index" class="slide-item position-relative">
+      <!-- Slide Background with Blur Effect -->
       <div
-          class="stories w-200 h-500 rounded-xl mb-3 carousel__item"
+          class="stories rounded-xl carousel__item opacity-98 h-full w-full blur-[5px] saturate-0"
           :style="{
-          backgroundImage: `url(${item.mediaUrl})`,
+          backgroundImage: `url(${item.profilePicUrl})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
       }"></div>
+
+      <!-- Lock Icon in the Center -->
+      <div class="flex absolute z-30 inset-0 justify-center items-center">
+        <h1 class="text-[50px] text-center">🔒</h1>
+      </div>
+
     </Slide>
   </Carousel>
 </template>
@@ -20,10 +27,18 @@ import { Carousel, Slide } from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
 
 export default defineComponent({
-  name: 'Slider',
+  name: 'ProfilesList',
   props: {
     items: {
       type: Array,
+      required: true,
+    },
+    instaName: {
+      type: String,
+      required: true,
+    },
+    profilePicture: {
+      type: String,
       required: true,
     },
   },
@@ -36,11 +51,12 @@ export default defineComponent({
 
 <style>
 .carousel__item {
-  min-height: 300px;
+  height: 300px;
   width: 200px;
   background-color: var(--vc-clr-primary);
   color: var(--vc-clr-white);
   font-size: 20px;
+  flex: 0.9;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -49,30 +65,13 @@ export default defineComponent({
 }
 
 .slide-item {
-  margin-right: 10px;
+  margin: 0; /* Remove margin */
 }
 
-.carousel__slide {
-  padding: 0;
-  margin-right: 10px;
+/* Optional: Adjust blur intensity for smaller screens */
+@media (max-width: 768px) {
+  .blur-[5px] {
+  blur: 2px;
 }
-
-.carousel__slide--visible {
-  width: auto;
 }
-
-.carousel__item {
-  min-height: 300px;
-  width: 200px;
-  background-color: var(--vc-clr-primary);
-  color: var(--vc-clr-white);
-  font-size: 20px;
-  border-radius: 8px;
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-}
-
 </style>

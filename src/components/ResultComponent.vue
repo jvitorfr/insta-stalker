@@ -88,12 +88,24 @@
         <li> <img src="@/assets/images/check.svg" alt="check"/>  Amigas(os) de seus seguidores </li>
         <li> <img src="@/assets/images/check.svg" alt="check"/> Fingem ser seus amigos </li>
         <li> <img src="@/assets/images/check.svg" alt="check"/> Que tem interesse em você </li>
-        <li> <img src="@/assets/images/check.svg" alt="check"/>  Moram em  <b>  {{ this.location.city || 'Brasil'}} </b></li>
+        <li> <img src="@/assets/images/check.svg"
+                  alt="check"/>  Moram em  <b>  {{ this.location.city || 'Brasil' }} </b></li>
       </ul>
-              <h2  class="mt-5"> Atividade nos stories </h2>
+
+        <span v-if="userInformation.stories_list && userInformation.stories_list.length > 0">
+                   <h2 class="mt-5"> Atividade nos stories </h2>
+
+              <StoriesList :insta-name="instaName" :profile-picture="user.data.profile_pic_url"
+                           :items="userInformation.stories_list"/>
+        </span>
+
+             <span v-if="userInformation.data && userInformation.data.length > 0">
+                   <h2 class="mt-5"> Reviram seus stories entre 1 e 4 vezes: </h2>
+
+              <ProfilesList :items="userInformation.data"/>
+        </span>
       </span>
 
-      <Slider :items="userInformation.stories_list" />
 
     </main>
 
@@ -118,15 +130,17 @@
 import {ref} from "vue";
 import ProgressBar from "../components/ProgressBar.vue";
 import Card from "../components/Card.vue";
-import Slider from "../components/Slider.vue";
+import StoriesList from "./StoriesList.vue";
 import InitialStep from "../components/InitialStep.vue";
 import requestService from '../services/request-service';
+import ProfilesList from '../components/ProfilesList.vue';
 
 
 export default {
   name: "ResultComponent",
   components: {
-    Slider,
+    ProfilesList,
+    StoriesList,
     InitialStep,
     Card,
     ProgressBar,
