@@ -90,23 +90,8 @@
         <li> <img src="@/assets/images/check.svg" alt="check"/> Que tem interesse em você </li>
         <li> <img src="@/assets/images/check.svg" alt="check"/>  Moram em  <b>  {{ this.location.city || 'Brasil'}} </b></li>
       </ul>
-              <h2> Atividade nos stories </h2>
+              <h2  class="mt-5"> Atividade nos stories </h2>
       </span>
-
-<!--      <div-->
-<!--          v-for="(story, index) in userInformation.stories_list"-->
-<!--          :key="index"-->
-<!--          class="stories w-200 h-300 rounded-xl mb-3"-->
-<!--          :style="{-->
-<!--          backgroundImage: `url(${story.mediaUrl})`,-->
-<!--          backgroundSize: 'cover',-->
-<!--          backgroundPosition: 'center center',-->
-<!--          backgroundRepeat: 'no-repeat',-->
-<!--          width: '200px',-->
-<!--          height: '300px'-->
-<!--      }"-->
-<!--      >-->
-<!--      </div>-->
 
       <Slider :items="userInformation.stories_list" />
 
