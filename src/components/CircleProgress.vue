@@ -1,6 +1,6 @@
 <template>
   <RadialProgress
-      :diameter="150"
+      :diameter="110"
       :completed-steps="completedSteps"
       :total-steps="totalSteps"
       :stroke-width="10"

@@ -53,9 +53,7 @@
       <span v-if="stepFive">
        <h1> Prévia </h1>
        <p> Liberamos apenas UMA PRÉVIA por aparelho.</p>
-        <div class="container">
-               <Cards :cards="finalCards"/>
-        </div>
+      <Cards :cards="finalCards"/>
       <h2 class="mt-4"> Prints recuperados de pessoas que te conhecem:</h2>
       <ul class="mt-4" style="font-size: 20px; text-align: center; padding: 0;">
         <li>  </li>
@@ -288,7 +286,8 @@ export default {
 
 <style scoped>
 .layout {
-  min-height: 100vh; /* Garante que o layout ocupe pelo menos 100% da altura da viewport */
+  min-height: 100vh;
+  max-width: 36vh;
 }
 
 ul {
