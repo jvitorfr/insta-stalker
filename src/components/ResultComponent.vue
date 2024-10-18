@@ -82,8 +82,10 @@
               <ProfilesList :autoplay="3000" :random_number="Math.floor(Math.random() * 4)"
                             :items="randomProfileList"/>
         </span>
-        <SecretCards/>
+        <SecretCards />
       </span>
+
+      <PreCheckout v-if="stepSix" />
     </main>
 
     <footer class="bg-white">
@@ -121,6 +123,7 @@ import {ref} from "vue";
 import ProgressBar from "./ProgressBar.vue";
 import StoriesList from "./StoriesList.vue";
 import InitialStep from "./InitialStep.vue";
+import PreCheckout from "./PreCheckout.vue";
 import requestService from '../services/request-service';
 import ProfilesList from './ProfilesList.vue';
 import SecretCards from "./SecretCards.vue";
@@ -130,6 +133,7 @@ import Cards from "./Cards.vue";
 export default {
   name: "ResultComponent",
   components: {
+    PreCheckout,
     SecretCards,
     Cards,
     ProfilesList,
@@ -212,6 +216,9 @@ export default {
     stepFive() {
       return this.step === 5;
     },
+    stepSix() {
+      return this.step === 6;
+    },
     randomProfileList() {
       if (!this.userInformation.data) {
         return [];
@@ -274,6 +281,13 @@ export default {
           }
         };
         getPreviewUserNew();
+
+        return;
+      }
+
+      if(this.stepFive) {
+        this.step = 6;
+        this.completed = 100;
       }
     },
     backStep() {

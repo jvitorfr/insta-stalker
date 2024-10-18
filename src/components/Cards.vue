@@ -30,18 +30,28 @@ export default {
 
 <style scoped>
 .cards-container {
-  /* Mantenha a largura da caixa e adicionar um espaço adequado */
-  max-width: 100%; /* Mantenha a largura máxima 100% */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
 }
 
 .card {
-  height: auto;
-  min-height: 150px;
-  padding: 20px;
+  width: 100%;
+  max-width: 470px;
+  height: 200px;
+  margin: 0.5rem;
   background-color: var(--bs-white);
   border-radius: 10px;
   text-align: center;
   overflow: hidden;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .card-title {
@@ -55,26 +65,49 @@ export default {
   font-size: 16px;
 }
 
-@media (max-width: 600px) {
-  .card {
-    font-size: 14px;
-    min-height: 180px;
-    padding: 0;
-  }
-  .card-body {
-    padding-top: 10px;
-  }
-
+/*!* Media Queries *!*/
+@media (max-width: 540px) {
   .cards-container{
-    max-width: 130%;
+    max-width: 115%
   }
 
   .card-title {
+    font-weight: bold;
     font-size: 14px;
+    margin-bottom: 10px;
+    padding-top: 5px;
+    height: 0;
   }
 
-  .card-text {
-    font-size: 13px;
+  .card {
+    height: auto;
+    min-height: 150px;
+    width: 100%;
   }
+
+  .card-body {
+    display: inline-grid;
+    padding: 12px;
+    height: 100%;
+  }
+  .card-text {
+    height: 0;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 375px) {
+  .card {
+    height: auto;
+    min-height: 182px;
+    width: 114%;
+  }
+
+  .card-body {
+    display: inline-grid;
+    padding: 11px;
+    height: 100%;
+  }
+
 }
 </style>
